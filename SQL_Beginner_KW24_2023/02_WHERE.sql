@@ -1,3 +1,4 @@
+USE Northwind
 --Ergebniszeilen filtern mit WHERE
 
 SELECT * FROM Customers
@@ -33,8 +34,9 @@ WHERE Country = 'Germany' OR City = 'Berlin'
 
 --"Vorsicht" bei Kombination aus AND und OR
 
-SELECT * FROM Customers
-WHERE (City = 'Paris' OR City = 'Berlin') AND Country = 'Germany'
+SELECT * FROM [Customers]
+WHERE (City = 'Paris' OR City = 'Berlin') AND [Country] = 'Germany'
+
 
 --AND "ist stärker bindent" als OR; Notfalls Klammern setzen!
 
@@ -106,4 +108,3 @@ WHERE Fax IS NULL
 
 SELECT * FROM Customers
 WHERE Fax IS NOT NULL
-

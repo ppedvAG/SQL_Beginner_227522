@@ -46,13 +46,16 @@ SELECT * FROM [Order Details]
 
 -- Sortieren mit ORDER BY
 
-SELECT * FROM Customers
+SELECT * 
+FROM Customers
 ORDER BY City
 
 -- Absteigend sortieren mit DESC
 
 SELECT * FROM Customers
 ORDER BY City DESC
+
+--Order by ist syntaktisch IMMER am Ende
 
 -- Auch mehrere Spalten gleichzeitig möglich, DESC bezieht sich immer nur 
 -- auf eine Spalte!
@@ -72,6 +75,9 @@ SELECT TOP 10 PERCENT * FROM Customers
 
 SELECT TOP 10 * FROM Customers
 ORDER BY CustomerID DESC
+
+SELECT TOP 1 * FROM Orders
+ORDER BY Freight DESC
 
 -- "BOTTOM" X existiert nicht, Ergebnisse einfach "umdrehen" mit ORDER BY
 

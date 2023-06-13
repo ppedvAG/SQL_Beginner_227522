@@ -14,7 +14,7 @@ JOIN Tabelle B ON A.Spalte1 = B.Spalte1
 
 --Generelles Join Beispiel:
 SELECT ProductName FROM Products
-JOIN Categories ON Products.CategoryID = Categories.CategoryID
+INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID
 WHERE CategoryName = 'Beverages'
 
 --Übung: Bestellungen die Herr King bearbeitet hat
@@ -112,4 +112,82 @@ SELECT * FROM Orders
 
 3. NF: Für "logische Einheiten" eigene Tabellen anlegen und mit Fremdschlüsseln (Foreign Key) versehen
 
+*/
+
+
+SELECT * 
+FROM Orders
+INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+
+SELECT * 
+FROM Orders
+INNER JOIN Employees ON Employees.EmployeeID = Orders.EmployeeID
+INNER JOIN Customers ON Customers.CustomerID = Orders.CustomerID
+
+SELECT * 
+FROM Orders
+INNER JOIN Customers ON Customers.CustomerID = Orders.CustomerID
+INNER JOIN Employees ON Employees.EmployeeID = Orders.EmployeeID
+
+
+--Übungen:
+
+--Alle Produkte mit ihrer jeweiligen Kategoriebezeichnung
+
+SELECT ProductName, CategoryName FROM Products
+INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID
+
+
+--Welche Bestellungen (Orders) wurden mit dem Speditionsunternehmen (Shippers) 'Speedy Express' versandt?
+--Beziehung Shippers (ShipperID) zu Orders (ShipVia)
+
+SELECT Orders.* FROM Shippers
+INNER JOIN Orders ON Shippers.ShipperID = Orders.ShipVia
+WHERE CompanyName = 'Speedy Express'
+
+
+SELECT Orders.* FROM Shippers as Ship
+INNER JOIN Orders ON Ship.ShipperID = Orders.ShipVia
+WHERE CompanyName = 'Speedy Express'
+
+SELECT Orders.* FROM Shippers
+INNER JOIN Orders ON ShipperID = ShipVia
+WHERE CompanyName = 'Speedy Express'
+
+
+--Übung: "MasterTable" erstellen
+--CustomerID, CompanyName, OrderID, OrderDate, ProductName, "Umsatz"
+
+CREATE VIEW vBestell_Übersicht 
+AS
+SELECT 
+Customers.CustomerID, Customers.CompanyName, 
+Orders.OrderID, Orders.OrderDate, Orders.Freight, 
+Employees.LastName, 
+Products.ProductName, 
+[Order Details].UnitPrice, [Order Details].Quantity, [Order Details].Discount,
+CAST(Quantity * [Order Details].UnitPrice * (1 - Discount) as decimal(10,2)) as PositionsSumme
+FROM  [Order Details] INNER JOIN
+Products ON [Order Details].ProductID = Products.ProductID INNER JOIN
+Orders ON [Order Details].OrderID = Orders.OrderID INNER JOIN
+Customers ON Orders.CustomerID = Customers.CustomerID INNER JOIN
+Employees ON Orders.EmployeeID = Employees.EmployeeID INNER JOIN
+Shippers ON Orders.ShipVia = Shippers.ShipperID
+
+
+SELECT * FROM vBestell_Übersicht
+
+SELECT PositionsSumme FROM vBestell_Übersicht
+
+SELECT PositionsSumme*1.1 FROM vBestell_Übersicht
+
+CREATE VIEW vKundenDatenShort
+AS
+SELECT CustomerID, CompanyName, ContactName FROM Customers
+
+SELECT * FROM vKundenDatenShort
+
+SELECT DISTINCT CompanyName FROM vBestell_Übersicht
+
+SELECT CAST(10000 as decimal(10,2))
 

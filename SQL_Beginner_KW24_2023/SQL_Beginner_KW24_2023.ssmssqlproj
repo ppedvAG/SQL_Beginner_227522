@@ -1,23 +1,35 @@
 <?xml version="1.0"?>
 <SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="SQL_Beginner_KW24_2023">
   <Items>
-    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+    <LogicalFolder Name="Verbindungen" Type="2" Sorted="true">
       <Items>
-        <ConnectionNode Name="NS2-WIN10-2\SQLSPIELPLATZ:DOM-PPA01\ns2">
+        <ConnectionNode Name="NS2-WIN10-2\SQLSPIELPLATZ:">
           <Created>2023-06-12T09:09:41.1137201+02:00</Created>
           <Type>SQL</Type>
           <Server>NS2-WIN10-2\SQLSPIELPLATZ</Server>
           <UserName />
-          <Authentication>Windows Authentication</Authentication>
+          <Authentication>SQL</Authentication>
           <InitialDB />
           <LoginTimeout>30</LoginTimeout>
           <ExecutionTimeout>0</ExecutionTimeout>
           <ConnectionProtocol>NotSpecified</ConnectionProtocol>
           <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
         </ConnectionNode>
+        <ConnectionNode Name="NS2-WIN10-2\SQLSPIELPLATZ:DOM-PPA01\ns2">
+          <Created>2023-06-13T08:52:38.1311775+02:00</Created>
+          <Type>SQL</Type>
+          <Server>NS2-WIN10-2\SQLSPIELPLATZ</Server>
+          <UserName />
+          <Authentication>Windows-Authentifizierung</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Abfrage</ApplicationName>
+        </ConnectionNode>
       </Items>
     </LogicalFolder>
-    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+    <LogicalFolder Name="Abfragen" Type="0" Sorted="true">
       <Items>
         <FileNode Name="00_Intro.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:NS2-WIN10-2\SQLSPIELPLATZ:True</AssociatedConnectionMoniker>
@@ -49,9 +61,27 @@
           <AssociatedConnUserName />
           <FullPath>04_Joins.sql</FullPath>
         </FileNode>
+        <FileNode Name="05_Datentypen.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:NS2-WIN10-2\SQLSPIELPLATZ:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>NS2-WIN10-2\SQLSPIELPLATZ</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>05_Datentypen.sql</FullPath>
+        </FileNode>
+        <FileNode Name="06_SysFunctions.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:NS2-WIN10-2\SQLSPIELPLATZ:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>NS2-WIN10-2\SQLSPIELPLATZ</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>06_SysFunctions.sql</FullPath>
+        </FileNode>
+        <FileNode Name="07_Aggregate.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:NS2-WIN10-2\SQLSPIELPLATZ:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>NS2-WIN10-2\SQLSPIELPLATZ</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>07_Aggregate.sql</FullPath>
+        </FileNode>
       </Items>
     </LogicalFolder>
-    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+    <LogicalFolder Name="Sonstiges" Type="3" Sorted="true">
       <Items />
     </LogicalFolder>
   </Items>

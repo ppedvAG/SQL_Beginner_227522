@@ -13,18 +13,20 @@ Vor/Nachmittags 15 min Kaffeepause
 - Einfach Select Abfragen
 - Where Filter + LIKE
 - Joins
+- Datenbank 101 - Normalisierung und co.
 
-- Systemfunktionen Datum/Strings
+- Datentypen
+- Systemfunktionen Datum/Strings/Cast
 - Group by/Aggregates COUNT, MAX
 - Views
-- Unterabfragen
-- (CTEs)
-- Temp Tables
-- Case
 
 - INSERT/UPDATE/DELETE
 - Create
 - Stored Procedures
 - Variablen
 - While
+- Unterabfragen
+- (CTEs)
+- Temp Tables
+- Case
 usw. 
