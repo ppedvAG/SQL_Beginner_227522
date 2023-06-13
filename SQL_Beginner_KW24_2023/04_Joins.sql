@@ -1,0 +1,115 @@
+--Problem: Produkte nach Kategorie "Beverages" filtern
+
+SELECT * FROM Categories --Zwischenschritt: Welche ID hat "Beverages"?
+SELECT * FROM Products
+WHERE CategoryID = 1
+
+--Besser: Lösung mit nur einer Abfrage über Joins
+
+/* 
+Join Syntax:
+SELECT * FROM Tabelle A
+JOIN Tabelle B ON A.Spalte1 = B.Spalte1
+*/
+
+--Generelles Join Beispiel:
+SELECT ProductName FROM Products
+JOIN Categories ON Products.CategoryID = Categories.CategoryID
+WHERE CategoryName = 'Beverages'
+
+--Übung: Bestellungen die Herr King bearbeitet hat
+SELECT * FROM Orders as o
+JOIN Employees as e ON o.EmployeeID = e.EmployeeID
+WHERE LastName = 'King'
+
+
+--Bisher: INNER Join
+
+
+
+--OUTER Joins: LEFT/RIGHT und FULL OUTER
+
+--LEFT:
+SELECT * 
+FROM Orders as o LEFT JOIN Customers as c ON o.CustomerID = c.CustomerID
+
+--RIGHT:
+SELECT * 
+FROM Orders as o RIGHT JOIN Customers as c ON o.CustomerID = c.CustomerID
+
+--FULL OUTER:
+SELECT * 
+FROM Orders as o FULL OUTER JOIN Customers as c ON o.CustomerID = c.CustomerID
+
+
+--JOIN "invertieren", d.h. keine Schnittmenge anzeigen, durch filtern nach NULL:
+SELECT * 
+FROM Orders as o RIGHT JOIN Customers as c ON o.CustomerID = c.CustomerID
+WHERE o.OrderID IS NULL
+
+
+--3. Join Art: CROSS JOIN, erstellt kathesisches Produkt zweier Tabellen (A x B)
+SELECT * FROM Orders CROSS JOIN Customers
+
+
+--SELF JOIN (eigentlich INNER JOIN):
+SELECT e1.EmployeeID, e1.Lastname as Vorgesetzter, e2.EmployeeID, e2.LastName as Angestellter 
+FROM Employees as e1 RIGHT JOIN Employees as e2 ON e1.EmployeeID = e2.ReportsTo
+--nützlich für hierarchische Beziehungen innerhalb einer Tabelle
+
+--Übungen:
+
+--1. Welche Produkte (Produktnamen) hat "Leverling" bisher verkauft?
+--Employees - Orders - Order Details - Products
+
+SELECT DISTINCT ProductName, LastName FROM Employees e
+JOIN Orders o ON e.EmployeeID = o.EmployeeID
+JOIN [Order Details] od ON od.OrderID = o.OrderID
+JOIN Products p ON p.ProductID = od.ProductID
+WHERE LastName = 'Leverling'
+
+--2. Wieviele Bestellungen haben Kunden aus Argentinien aufgegeben? (Anzahl OrderIDs bzw. Anzahl Ergebniszeilen)
+--Customers - Orders
+
+SELECT OrderID --COUNT(OrderID) 
+FROM Customers c
+JOIN Orders o ON c.CustomerID = o.CustomerID
+WHERE Country = 'Argentina'
+
+--3. Was war die größte Bestellmenge (Quantity) von Chai Tee (ProductName = 'Chai')?
+--Order Details - Products
+
+SELECT TOP 1 ProductName, Quantity FROM Products p 
+JOIN [Order Details] od ON p.ProductID = od.ProductID
+WHERE ProductName = 'Chai'
+ORDER BY Quantity DESC
+
+/*
+SELECT MAX(Quantity) FROM Products p 
+JOIN [Order Details] od ON p.ProductID = od.ProductID
+WHERE ProductName = 'Chai'
+*/
+
+/*
+Join "Reihenfolge":
+
+1. FROM Tabelle A JOIN Tabelle B
+
+2. FROM Tabelle AB JOIN Tabelle C
+
+3. FROM Tabelle ABC LEFT JOIN Tabelle D
+
+*/
+/*
+
+1. Normalform (NF): Atomare Werte
+
+2. NF: Eindeutige Datensätze (ID Spalten verwenden)
+--> Primärschlüssel (Primary Key) (zusammengesetzter Primärschlüssel)
+*/
+SELECT * FROM Orders
+/*
+
+3. NF: Für "logische Einheiten" eigene Tabellen anlegen und mit Fremdschlüsseln (Foreign Key) versehen
+
+
