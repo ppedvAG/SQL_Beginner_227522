@@ -4,7 +4,7 @@ Agenda:
 Start 09:00 Uhr
 Ende 17:00 Uhr
 
-Mittag: 12:30 Uhr
+Mittag: ca. 12:30 Uhr
 
 Vor/Nachmittags 15 min Kaffeepause
 
@@ -24,9 +24,8 @@ Vor/Nachmittags 15 min Kaffeepause
 - Create
 - Stored Procedures
 - Variablen
-- While
 - Unterabfragen
-- (CTEs)
 - Temp Tables
 - Case
-usw. 
+- (CTEs)
+- (While)
